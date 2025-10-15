@@ -9,7 +9,16 @@ export default async function handler(req, res) {
     }
   });
 
+  // Try to parse JSON
   const data = await gh.json();
 
-  res.status(200).json(data.slice(0, 20)); // return first 20 issues
+  // Log unexpected responses for debugging
+  if (!Array.isArray(data)) {
+    console.error("GitHub API did not return an array:", data);
+    return res
+      .status(500)
+      .json({ error: "Unexpected GitHub API response", details: data });
+  }
+
+  res.status(200).json(data.slice(0, 20));
 }
