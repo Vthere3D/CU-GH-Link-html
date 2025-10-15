@@ -2,4 +2,9 @@
   "name": "clickup-github-bridge",
   "version": "1.0.0",
   "type": "module"
+{ 
+  "engines" : { 
+    "node" : "20.x" 
+  }
+ }
 }
